@@ -4,10 +4,12 @@ import axios from "../../utils/axios";
 import { useShows } from "../../context/TVShowProvider";
 import { useParams } from "react-router-dom";
 import "../../styles/details.css";
-import { CircularProgress } from "../../components";
+import { CircularProgress, TrailerModal } from "../../components";
 import { useFilms } from "../../context/FilmProvider";
 
 export const TVShows = () => {
+  const [openModal, setOpenModal] = useState(false);
+
   const mContext = useFilms();
   const context = useShows();
   const params = useParams();
@@ -142,6 +144,20 @@ export const TVShows = () => {
           </MDBRow>
         </MDBContainer>
       </div>
+
+      <TrailerModal
+        show={openModal}
+        setShow={setOpenModal}
+        trailer={
+          context.loading && context.selectedMovieVideos !== null
+            ? context.selectedMovieVideos.length === 0
+              ? null
+              : context.selectedMovieVideos.find(
+                  (video) => video.type === "Trailer"
+                )
+            : null
+        }
+      />
     </div>
   );
 };

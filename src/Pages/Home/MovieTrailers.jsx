@@ -4,16 +4,11 @@ import {
   MDBModalBody,
   MDBModalDialog,
   MDBModalHeader,
-  MDBBtn,
   MDBModalContent,
-  MDBModalTitle,
-  MDBModalFooter,
 } from "mdb-react-ui-kit";
-import { Carousel, ScrollingCarousel } from "@trendyol-js/react-carousel";
 import { useFilms } from "../../context/FilmProvider";
 import axios from "../../utils/axios";
 import backgroundImage from "../../assets/thor.jpg";
-import play from "../../assets/play.png";
 import "../../styles/toptrailers.css";
 
 export const TopRatedMovieTrailers = () => {

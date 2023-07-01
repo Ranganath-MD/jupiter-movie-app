@@ -5,15 +5,17 @@ import { TrendingTVToday } from "./TrendingTVToday";
 import { PopularMovies } from "./PopularMovies";
 import "../../styles/home.css";
 import { TopRatedMovieTrailers } from "./MovieTrailers";
+import { useFilms } from "../../context/FilmProvider";
 
 export const Home = () => {
+  const context = useFilms(); 
   const [query, setQuery] = useState("");
   const [showTrMovies, setShowTrMovies] = useState(false);
 
-  // const backdrop =
-  //   context.homeImage === ""
-  //     ? backgroundImage
-  //     : `https://image.tmdb.org/t/p/original/${context.homeImage}`;
+  const backdrop =
+    context.homeImage === ""
+      ? "https://image.tmdb.org/t/p/original/ovM06PdF3M8wvKb06i4sjW3xoww.jpg"
+      : `https://image.tmdb.org/t/p/original/${context.homeImage}`;
 
   const handleSearch = () => {
     if (query === "") {
@@ -33,14 +35,10 @@ export const Home = () => {
       <div
         className="home-component"
         style={{
-          // backgroundImage: `url(${})`,
-          backgroundImage: `url(
-            "https://image.tmdb.org/t/p/original//ovM06PdF3M8wvKb06i4sjW3xoww.jpg"
-          )`,
+          backgroundImage: `url(${backdrop})`,
         }}
       >
         <MDBContainer>
-          <p className="Heading">Welcome</p>
           <p className="subtitle">Browse your favourite Movies and TV Shows</p>
           <MDBCol sm="12" md="12" lg="12">
             <form className="form-inline mt-4 mb-4">

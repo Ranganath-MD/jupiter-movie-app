@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useFilms } from "../../context/FilmProvider";
 import axios from "../../utils/axios";
 import { MDBContainer, MDBRow, MDBCol } from "mdb-react-ui-kit";
-import { LoadingSpinner } from "../../components";
+import { LoadingSpinner, PaginationComponent } from "../../components";
 import { DeatilsCard } from "./Card";
 import { useShows } from "../../context/TVShowProvider";
 
@@ -13,7 +13,11 @@ export const Discover = ({ type }) => {
   const [loaded, setLoaded] = useState(true);
 
   const handlePageChange = (pageNumber) => {
-    context.setPage(pageNumber);
+    if(type === "movies") {
+      context.setPage(pageNumber);
+    } else {
+      tvContext.setPage(pageNumber);
+    }
   };
 
   const getAllMovies = async () => {
@@ -54,12 +58,17 @@ export const Discover = ({ type }) => {
     } else {
       getTVShows();
     }
-  }, [context.page, type]);
+  }, [context.page, tvContext.page, type]);
 
   return (
     <MDBContainer className="discover">
       <div className="loading-spinner">
         <LoadingSpinner loading={loaded} />
+      </div>
+      <div className="heading">
+        {
+          type === "movies" ? <h1>Browse Movies</h1> : <h1>Browse TV Shows</h1>
+        }
       </div>
       {type === "movies" ? (
         <MDBRow>
@@ -82,11 +91,11 @@ export const Discover = ({ type }) => {
           })}
         </MDBRow>
       )}
-      {/* <PaginationComponent
-        page={context.page}
+      <PaginationComponent
+        page={type === "movies" ? context.page : tvContext.page}
         totalCount={totalCount}
         handlePageChange={handlePageChange}
-      /> */}
+      />
     </MDBContainer>
   );
 };

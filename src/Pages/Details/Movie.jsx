@@ -8,8 +8,8 @@ import {
 import axios from "../../utils/axios";
 import { useFilms } from "../../context/FilmProvider";
 import { useParams } from "react-router-dom";
+import { CircularProgress, TrailerModal } from "../../components";
 import "../../styles/details.css";
-import { CircularProgress } from "../../components";
 
 export const Movie = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -43,9 +43,11 @@ export const Movie = () => {
 
   const toggle = () => {
     if (!context.loading && context.selectedMovieVideos.length !== 0) {
-      setOpenModal(!openModal);
+      setOpenModal(open => !open);
     }
   };
+
+  console.log(openModal)
 
   return (
     <div className="movie-container">
@@ -146,6 +148,21 @@ export const Movie = () => {
           </MDBRow>
         </MDBContainer>
       </div>
+
+
+      <TrailerModal
+        show={openModal}
+        setShow={setOpenModal}
+        trailer={
+          !context.loading && context.selectedMovieVideos !== null
+            ? context.selectedMovieVideos.length === 0
+              ? null
+              : !openModal ? "" : context.selectedMovieVideos.find(
+                  (video) => video.type === "Trailer"
+                )
+            : null
+        }
+      />
     </div>
   );
 };
