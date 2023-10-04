@@ -2,7 +2,7 @@ import React from "react";
 import { Movie } from "./Movie";
 import { MDBContainer, MDBRow, MDBCol } from "mdb-react-ui-kit";
 import { Link, useLocation, useParams } from "react-router-dom";
-import CastCard from "../../components/layout/CastCard";
+import CastCard from "../../components/CastCard";
 import { useFilms } from "../../context/FilmProvider";
 import { Reviews } from "./Reviews";
 import { Info } from "./Info";
@@ -23,8 +23,6 @@ export const Details = () => {
   const images = location.pathname.includes("movie")
     ? context.selectedMovieImages
     : tvcontext.selectedShowImages;
-
-  console.log(images);
 
   return (
     <div>

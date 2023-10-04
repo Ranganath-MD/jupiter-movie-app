@@ -40,7 +40,7 @@ export const TVShows = () => {
   }, []);
 
   const toggle = () => {
-    if (!context.loading && context.selectedShowVideos.length !== 0) {
+    if (!context?.loading && context.selectedShowVideos?.length !== 0) {
       setOpenModal(!openModal);
     }
   };

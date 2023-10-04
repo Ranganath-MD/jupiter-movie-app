@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { Layout } from "./components/layout/Layout";
-import { Home, Details, Discover } from "./Pages";
+import { Home, Details, Discover, Search } from "./Pages";
 import { FilmProvider } from "./context/FilmProvider";
 import { TVShowProvider } from "./context/TVShowProvider";
 
@@ -23,12 +23,10 @@ function App() {
             />
             <Route path="/discover/tv-shows" element={<Discover type="tv" />} />
             <Route path="/discover/tv-shows/:id" element={<Details />} />
-            {/* <Route path="/discover/tv-shows" element={TVShows} />
-              <Route path="/discover/tv-shows/:id" element={TVShowComponent} />
-              <Route path="/discover/movie/:id/cast-crew" element={FullCastCrew} />
-              <Route path="/discover/tv/:id/cast-crew" element={TVShowCast} />
-              <Route path="/search" element={SearchResults} />
-              <Route path="*" element={NotFound} /> */}
+              {/* <Route path="/discover/movie/:id/cast-crew" element={FullCastCrew} /> */}
+              {/* <Route path="/discover/tv/:id/cast-crew" element={TVShowCast} /> */}
+              <Route path="/search" element={<Search />} />
+              <Route path="*" element={<h1>Not Found</h1>} />
           </Routes>
         </Layout>
       </TVShowProvider>

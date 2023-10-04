@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../../styles/discovercard.css";
 
-export const DeatilsCard = ({ result, type, loaded }) => {
+export const DeatilsCard = ({ result, type }) => {
   return (
     <Link
       to={

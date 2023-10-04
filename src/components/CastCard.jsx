@@ -7,8 +7,8 @@ import {
   MDBCardTitle,
   MDBCardText,
 } from "mdb-react-ui-kit";
-import "../../styles/details.css";
-import Avatar from "../../assets/avatar.png";
+import "../styles/details.css";
+import Avatar from "../assets/avatar.png";
 
 const CastCard = ({ loading, cast }) => {
 

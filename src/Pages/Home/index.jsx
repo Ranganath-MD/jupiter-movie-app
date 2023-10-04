@@ -1,16 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { MDBContainer, MDBCol, MDBIcon, MDBBtn } from "mdb-react-ui-kit";
+import { useNavigate, useSearchParams} from "react-router-dom";
+
 import { TrendingMoviesToday } from "./TrendingMoviesToday";
 import { TrendingTVToday } from "./TrendingTVToday";
 import { PopularMovies } from "./PopularMovies";
-import "../../styles/home.css";
 import { TopRatedMovieTrailers } from "./MovieTrailers";
 import { useFilms } from "../../context/FilmProvider";
+import "../../styles/home.css";
 
 export const Home = () => {
   const context = useFilms(); 
   const [query, setQuery] = useState("");
   const [showTrMovies, setShowTrMovies] = useState(false);
+
+  const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const backdrop =
     context.homeImage === ""
@@ -21,8 +26,14 @@ export const Home = () => {
     if (query === "") {
       console.log("There is no query");
     } else {
-      localStorage.setItem("query", query);
-      setRedirect(true);
+      setSearchParams((searchParams) => {
+        searchParams.set("q", query);
+        return searchParams;
+      });
+      navigate({
+        pathname: "/search",
+        search: `?q=${query}`
+      })
     }
   };
 
@@ -39,7 +50,7 @@ export const Home = () => {
         }}
       >
         <MDBContainer>
-          <p className="subtitle">Browse your favourite Movies and TV Shows</p>
+          <p className="subtitle">Browse your favourite Movies</p>
           <MDBCol sm="12" md="12" lg="12">
             <form className="form-inline mt-4 mb-4">
               <input
