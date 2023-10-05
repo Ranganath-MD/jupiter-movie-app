@@ -106,7 +106,7 @@ export const TVShows = () => {
 
                 <h2 className="rating-text">User rating</h2>
 
-                <button className="trailer-btn" onClick={toggle}>
+                <button className="trailer-btn" onClick={() => toggle()}>
                   <MDBIcon icon="play" className="mr-2"></MDBIcon>
                   <span>Play trailer</span>
                 </button>
@@ -150,9 +150,9 @@ export const TVShows = () => {
         setShow={setOpenModal}
         trailer={
           context.loading && context.selectedMovieVideos !== null
-            ? context.selectedMovieVideos.length === 0
+            ? context.selectedMovieVideos?.length === 0
               ? null
-              : context.selectedMovieVideos.find(
+              : context.selectedMovieVideos?.find(
                   (video) => video.type === "Trailer"
                 )
             : null

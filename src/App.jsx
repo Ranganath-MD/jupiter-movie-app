@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { Layout } from "./components/layout/Layout";
-import { Home, Details, Discover, Search } from "./Pages";
+import { Home, Details, Discover, Search, FullCastCrew } from "./Pages";
 import { FilmProvider } from "./context/FilmProvider";
 import { TVShowProvider } from "./context/TVShowProvider";
 
@@ -23,8 +23,8 @@ function App() {
             />
             <Route path="/discover/tv-shows" element={<Discover type="tv" />} />
             <Route path="/discover/tv-shows/:id" element={<Details />} />
-              {/* <Route path="/discover/movie/:id/cast-crew" element={FullCastCrew} /> */}
-              {/* <Route path="/discover/tv/:id/cast-crew" element={TVShowCast} /> */}
+              <Route path="/discover/movie/:id/cast-crew" element={<FullCastCrew />} />
+              {/* {/* <Route path="/discover/tv/:id/cast-crew" element={TVShowCast} /> */}
               <Route path="/search" element={<Search />} />
               <Route path="*" element={<h1>Not Found</h1>} />
           </Routes>

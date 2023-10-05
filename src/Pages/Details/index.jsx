@@ -41,7 +41,7 @@ export const Details = () => {
 
             <p className="cast-btn">
               <Link to={`/discover/movie/${params.id}/cast-crew`}>
-                Full Cast & Crew
+                Full Cast
               </Link>
             </p>
 
@@ -71,6 +71,7 @@ export const Details = () => {
           </MDBCol>
           <MDBCol size="12" sm="4" md="4" lg="4">
             <Info
+              type={type}
               details={type === "movie" ? movie : tvshow}
               loading={context.loading}
             />
